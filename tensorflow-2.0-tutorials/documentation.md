@@ -1,8 +1,8 @@
-#Tensorflow Documentation
+# Tensorflow Documentation
 
-##Callbacks
+## Callbacks
   
-###ModelCheckpoint
+### ModelCheckpoint
 
 keras.callbacks.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)
 
@@ -12,7 +12,7 @@ filepath can contain named formatting options, which will be filled with the val
 
 For example: if filepath is weights.{epoch:02d}-{val_loss:.2f}.hdf5, then the model checkpoints will be saved with the epoch number and the validation loss in the filename.
 
-####Arguments
+#### Arguments
 
 - filepath: string, path to save the model file.
 - monitor: quantity to monitor.
@@ -22,11 +22,11 @@ For example: if filepath is weights.{epoch:02d}-{val_loss:.2f}.hdf5, then the mo
 - mode: one of {auto, min, max}. If save_best_only=True, the decision to overwrite the current save file is made based on either the - maximization or the minimization of the monitored quantity. For val_acc, this should be max, for val_loss this should be min, etc. In auto -mode, the direction is automatically inferred from the name of the monitored quantity.
 - period: Interval (number of epochs) between checkpoints.
 
-###EarlyStopping
+### EarlyStopping
 
 keras.callbacks.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto', baseline=None, restore_best_weights=False)
 
-####Arguments
+#### Arguments
 
 - monitor: quantity to be monitored.
 - min_delta: minimum change in the monitored quantity to qualify as an improvement, i.e. an absolute change of less than min_delta, will count as no improvement.
