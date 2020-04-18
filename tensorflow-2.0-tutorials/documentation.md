@@ -23,12 +23,17 @@ For example: if filepath is weights.{epoch:02d}-{val_loss:.2f}.hdf5, then the mo
 - period: Interval (number of epochs) between checkpoints.
 
 #### Example 
-```checkpoint_cb = keras.callbacks.ModelCheckpoint("my_keras_model.h5")
-history = model.fit(X_train, y_train, epochs=10, callbacks=[checkpoint_cb])```
+
+```
+checkpoint_cb = keras.callbacks.ModelCheckpoint("my_keras_model.h5")
+history = model.fit(X_train, y_train, epochs=10, callbacks=[checkpoint_cb])
+```
 
 ### EarlyStopping
 
-```keras.callbacks.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto', baseline=None, restore_best_weights=False)```
+```
+keras.callbacks.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto', baseline=None, restore_best_weights=False)
+```
 
 #### Arguments
 
@@ -42,10 +47,12 @@ history = model.fit(X_train, y_train, epochs=10, callbacks=[checkpoint_cb])```
 
 #### Example 
 
-```early_stopping_cb = keras.callbacks.EarlyStopping(patience=10,
+```
+early_stopping_cb = keras.callbacks.EarlyStopping(patience=10,
 restore_best_weights=True)
 history = model.fit(X_train, y_train, epochs=100,
 validation_data=(X_valid, y_valid),
-callbacks=[checkpoint_cb, early_stopping_cb])```
+callbacks=[checkpoint_cb, early_stopping_cb])
+```
 
 	
