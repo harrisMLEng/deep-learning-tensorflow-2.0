@@ -1,5 +1,5 @@
 # Tensorflow-Keras Documentation
-<i><br> reference http://keras.io </br></i>
+<i> Reference http://keras.io </i>
 ## Callbacks
   
 ### ModelCheckpoint
@@ -19,8 +19,8 @@ For example: if filepath is weights.{epoch:02d}-{val_loss:.2f}.hdf5, then the mo
 - filepath: string, path to save the model file.
 - monitor: quantity to monitor.
 - verbose: verbosity mode, 0 or 1.
-- <strong>save_best_only: if save_best_only=True, the latest best model according to the quantity monitored will not be overwritten.
-- save_weights_only: if True, then only the model's weights will be saved (model.save_weights(filepath)), else the full model is saved - -(model.save(filepath)).</strong>
+- <strong>save_best_only: if save_best_only=True, the latest best model according to the quantity monitored will not be overwritten.</strong>
+- save_weights_only: if True, then only the model's weights will be saved (model.save_weights(filepath)), else the full model is saved - -(model.save(filepath)).
 - mode: one of {auto, min, max}. If save_best_only=True, the decision to overwrite the current save file is made based on either the - maximization or the minimization of the monitored quantity. For val_acc, this should be max, for val_loss this should be min, etc. In auto -mode, the direction is automatically inferred from the name of the monitored quantity.
 - period: Interval (number of epochs) between checkpoints.
 
@@ -45,7 +45,7 @@ keras.callbacks.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patienc
 - verbose: verbosity mode.
 - mode: one of {auto, min, max}. In min mode, training will stop when the quantity monitored has stopped decreasing; in max mode it will stop when the quantity monitored has stopped increasing; in auto mode, the direction is automatically inferred from the name of the monitored quantity.
 - baseline: Baseline value for the monitored quantity to reach. Training will stop if the model doesn't show improvement over the baseline.
-- restore_best_weights: whether to restore model weights from the epoch with the best value of the monitored quantity. If False, the model weights obtained at the last step of training are used.
+- <strong>restore_best_weights: whether to restore model weights from the epoch with the best value of the monitored quantity. If False, the model weights obtained at the last step of training are used.</strong>
 
 #### Example 
 
@@ -56,5 +56,8 @@ history = model.fit(X_train, y_train, epochs=100,
 validation_data=(X_valid, y_valid),
 callbacks=[checkpoint_cb, early_stopping_cb])
 ```
+
+
+## Tensorboard 
 
 	
