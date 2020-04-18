@@ -23,9 +23,9 @@ For example: if filepath is weights.{epoch:02d}-{val_loss:.2f}.hdf5, then the mo
 - period: Interval (number of epochs) between checkpoints.
 
 #### Example 
-``` [...] # build and compile the model
+```[...] # build and compile the model
 checkpoint_cb = keras.callbacks.ModelCheckpoint("my_keras_model.h5")
-history = model.fit(X_train, y_train, epochs=10, callbacks=[checkpoint_cb]) ```
+history = model.fit(X_train, y_train, epochs=10, callbacks=[checkpoint_cb])```
 
 ### EarlyStopping
 
