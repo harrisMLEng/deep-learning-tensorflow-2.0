@@ -4,7 +4,9 @@
   
 ### ModelCheckpoint
 
-```keras.callbacks.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)```
+```
+keras.callbacks.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)
+```
 
 Save the model after every epoch.
 
