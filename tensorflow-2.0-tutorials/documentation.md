@@ -58,6 +58,45 @@ callbacks=[checkpoint_cb, early_stopping_cb])
 ```
 
 
-## Tensorboard 
+### Tensorboard 
 
-	
+```
+tf.keras.callbacks.TensorBoard(
+    log_dir='logs', histogram_freq=0, write_graph=True, write_images=False,
+    update_freq='epoch', profile_batch=2, embeddings_freq=0,
+    embeddings_metadata=None, **kwargs
+)
+```
+
+#### Arguments:
+- log_dir: the path of the directory where to save the log files to be parsed by TensorBoard.
+- histogram_freq: frequency (in epochs) at which to compute activation and weight histograms for the layers of the model. If set to 0, histograms won't be computed. Validation data (or split) must be specified for histogram visualizations.
+- write_graph: whether to visualize the graph in TensorBoard. The log file can become quite large when write_graph is set to True.
+- write_images: whether to write model weights to visualize as image in TensorBoard.
+- update_freq: 'batch' or 'epoch' or integer. When using 'batch', writes the losses and metrics to TensorBoard after each batch. The same applies for 'epoch'. If using an integer, let's say 1000, the callback will write the metrics and losses to TensorBoard every 1000 batches. Note that writing too frequently to TensorBoard can slow down your training.
+- profile_batch: Profile the batch to sample compute characteristics. By default, it will profile the second batch. Set profile_batch=0 to disable profiling. Must run in TensorFlow eager mode.
+- embeddings_freq: frequency (in epochs) at which embedding layers will be visualized. If set to 0, embeddings won't be visualized.
+- embeddings_metadata: a dictionary which maps layer name to a file name in which metadata for this embedding layer is saved. See the details about metadata files format. In case if the same metadata file is used for all embedding layers, string can be passed.
+
+
+#### Example 
+
+```
+import os
+root_logdir = os.path.join(os.curdir, "my_logs")
+def get_run_logdir():
+import time
+run_id = time.strftime("run_%Y_%m_%d-%H_%M_%S")
+return os.path.join(root_logdir, run_id)
+run_logdir = get_run_logdir() # e.g., './my_logs/run_2019_06_07-15_15_22'
+
+tensorboard_cb = keras.callbacks.TensorBoard(run_logdir)
+history = model.fit(X_train, y_train, epochs=30,
+validation_data=(X_valid, y_valid),
+callbacks=[tensorboard_cb])
+```	
+
+
+
+
+
