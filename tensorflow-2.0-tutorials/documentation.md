@@ -147,7 +147,82 @@ tf.keras.preprocessing.image.ImageDataGenerator(
 )
 ```
 
+### DirectoryIterator
+
+- Iterator capable of reading images from a directory on disk.
+- Returned from ImageGenerator
+- x, y = next() returns the next batch of numpy arrays and the labels of the batch
+ 
+Arguments:
+- directory: Path to the directory to read images from. Each subdirectory in this directory will be considered to contain images from one class, or alternatively you could specify class subdirectories via the classes argument.
+- image_data_generator: Instance of ImageDataGenerator to use for random transformations and normalization.
+- target_size: tuple of integers, dimensions to resize input images to.
+- color_mode: One of "rgb", "rgba", "grayscale". Color mode to read images.
+- classes: Optional list of strings, names of subdirectories containing images from each class (e.g. ["dogs", "cats"]). It will be computed automatically if not set.
+- class_mode: Mode for yielding the targets: "binary": binary targets (if there are only two classes), "categorical": categorical targets, "sparse": integer targets, "input": targets are images identical to input images (mainly used to work with autoencoders), None: no targets get yielded (only input images are yielded).
+- batch_size: Integer, size of a batch.
+- shuffle: Boolean, whether to shuffle the data between epochs.
+- seed: Random seed for data shuffling.
+- data_format: String, one of channels_first, channels_last.
+- save_to_dir: Optional directory where to save the pictures being yielded, in a viewable format. This is useful for visualizing the random transformations being applied, for debugging purposes.
+- save_prefix: String prefix to use for saving sample images (if save_to_dir is set).
+- save_format: Format to use for saving sample images (if save_to_dir is set).
+- subset: Subset of data ("training" or "validation") if validation_split is set in ImageDataGenerator.
+- interpolation: Interpolation method used to resample the image if the target size is different from that of the loaded image. Supported methods are "nearest", "bilinear", and "bicubic". If PIL version 1.1.3 or newer is installed, "lanczos" is also supported. If PIL version 3.4.0 or newer is installed, "box" and "hamming" are also supported. By default, "nearest" is used.
+- dtype: Dtype to use for generated arrays.
+Attributes:
+- filepaths: List of absolute paths to image files
+- labels: Class labels of every observation
+- sample_weight
+
+### tf.keras.models.Sequential
+
+### fit 
+
+```
+fit_generator(
+    generator, steps_per_epoch=None, epochs=1, verbose=1, callbacks=None,
+    validation_data=None, validation_steps=None, validation_freq=1,
+    class_weight=None, max_queue_size=10, workers=1, use_multiprocessing=False,
+    shuffle=True, initial_epoch=0
+)
+```
+
+Fits the model on data yielded batch-by-batch by a Python generator. (deprecated)
+
+### fit_generator
 
 
+```
+fit_generator(
+    generator, steps_per_epoch=None, epochs=1, verbose=1, callbacks=None,
+    validation_data=None, validation_steps=None, validation_freq=1,
+    class_weight=None, max_queue_size=10, workers=1, use_multiprocessing=False,
+    shuffle=True, initial_epoch=0
+)
+```
+
+### compile
+
+```
+compile(
+    optimizer='rmsprop', loss=None, metrics=None, loss_weights=None,
+    sample_weight_mode=None, weighted_metrics=None, target_tensors=None,
+    distribute=None, **kwargs
+)
+```
+
+- Configures the model for training.
+
+Arguments:
+- optimizer: String (name of optimizer) or optimizer instance. See tf.keras.optimizers.
+- loss: String (name of objective function), objective function or tf.keras.losses.Loss instance. See tf.keras.losses. An objective function is any callable with the signature scalar_loss = fn(y_true, y_pred). If the model has multiple outputs, you can use a different loss on each output by passing a dictionary or a list of losses. The loss value that will be minimized by the model will then be the sum of all individual losses.
+- metrics: List of metrics to be evaluated by the model during training and testing. Typically you will use metrics=['accuracy']. To specify different metrics for different outputs of a multi-output model, you could also pass a dictionary, such as metrics={'output_a': 'accuracy', 'output_b': ['accuracy', 'mse']}. You can also pass a list (len = len(outputs)) of lists of metrics such as metrics=[['accuracy'], ['accuracy', 'mse']] or metrics=['accuracy', ['accuracy', 'mse']].
+- loss_weights: Optional list or dictionary specifying scalar coefficients (Python floats) to weight the loss contributions of different model outputs. The loss value that will be minimized by the model will then be the weighted sum of all individual losses, weighted by the loss_weights coefficients. If a list, it is expected to have a 1:1 mapping to the model's outputs. If a tensor, it is expected to map output names (strings) to scalar coefficients.
+sample_weight_mode: If you need to do timestep-wise sample weighting (2D weights), set this to "temporal". None defaults to sample-wise weights (1D). If the model has multiple outputs, you can use a different sample_weight_mode on each output by passing a dictionary or a list of modes.
+- weighted_metrics: List of metrics to be evaluated and weighted by sample_weight or class_weight during training and testing.
+- target_tensors: By default, Keras will create placeholders for the model's target, which will be fed with the target data during training. If instead you would like to use your own target tensors (in turn, Keras will not expect external Numpy data for these targets at training time), you can specify them via the target_tensors argument. It can be a single tensor (for a single-output model), a list of tensors, or a dict mapping output names to target tensors.
+- distribute: NOT SUPPORTED IN TF 2.0, please create and compile the model under distribution strategy scope instead of passing it to compile.
+- **kwargs: Any additional arguments.
 
 
