@@ -146,6 +146,8 @@ tf.keras.preprocessing.image.ImageDataGenerator(
     data_format=None, validation_split=0.0, dtype=None
 )
 ```
+- generator.class_indices. Check the labelled classes after using 
+  .flow_from_directory
 
 ### DirectoryIterator
 
